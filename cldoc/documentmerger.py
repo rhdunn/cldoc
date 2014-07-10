@@ -108,7 +108,10 @@ class DocumentMerger:
             key = 'doc'
 
             if len(parts) > 1:
-                key = parts[1]
+                if parts[0].endswith('operator'): # for operator/ and operator/=.
+                    qid = self._normalized_qid(category)
+                else:
+                    key = parts[1]
 
             if not self.qid_to_node[qid]:
                 self.add_categories([qid])
